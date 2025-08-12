@@ -10,9 +10,9 @@
     <!-- #title -->
     <title>{{env('APP_NAME')}} - Financial Loans</title>
     <!-- #keywords -->
-    <meta name="keywords" content="FINVIEW, Financial Loan, Financial Loan Review and Comparison">
+    <meta name="keywords" content="{{env('APP_NAME')}}, Financial Loan, Financial Loan Review and Comparison">
     <!-- #description -->
-    <meta name="description" content="FINVIEW HTML5 Template">
+    <meta name="description" content="{{env('APP_NAME')}}">
 
     <!--  css dependencies start  -->
     <!-- bootstrap five css -->
@@ -47,7 +47,7 @@
             <div class="row">
                 <div class="col-12">
                     <nav class="navbar navbar-expand-xl nav-shadow" id="#navbar">
-                        <a class="navbar-brand" href="/"><img src="assets/images/corefund.png" class="logo" alt="logo"></a>
+                        <a class="navbar-brand" href="/">VumaFunds</a>
                         <a class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                             <i class="bi bi-list"></i>
                         </a>
@@ -163,9 +163,7 @@
                 <div class="col-12">
                     <div class="footer-secondary__content">
                         <div class="footer__logo">
-                            <a href="index.html">
-                                <img src="assets/images/logo.png" alt="Logo">
-                            </a>
+                           
                         </div>
                         <div class="quick-link order-1 order-lg-0">
                             <ul class="quick-link__list">
