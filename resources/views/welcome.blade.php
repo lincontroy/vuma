@@ -469,6 +469,7 @@
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
+                <br><br>
                 <div class="hero-text">
                     <h1>Smart Lending for Your Future</h1>
                     <p>Access quick, flexible loans with competitive rates. VumaFunds makes borrowing simple, transparent, and tailored to your needs.</p>
