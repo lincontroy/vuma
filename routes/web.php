@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoansController;
+use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\BodaBodaController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\LoanController;
 
@@ -45,8 +47,36 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware(['auth'])->prefix('loans')->group(function() {
+    Route::post('/other', [LoansController::class, 'otherapply'])->name('loan.otherapply');
+    Route::get('/cars', [LoansController::class, 'cars'])->name('loan.cars');
+    Route::get('/cars/{id}', [LoansController::class, 'carDetails'])->name('loan.carDetails');
+Route::get('/bodaboda', [LoansController::class, 'bodaboda'])->name('loan.bodaboda');
+Route::post('/bodaboda/apply', [LoansController::class, 'storeBodaBodaLoan'])->name('loan.bodaboda.store');
+Route::get('/bodaboda/{id}', [LoansController::class, 'bodaDetails'])->name('loan.bodaDetails');
+Route::get('/bodaboda/apply/{id}', [LoansController::class, 'applyBodaBodaLoan'])->name('loan.bodaboda.apply');
+// Show loan application form for selected Boda Boda
+Route::get('/bodaboda/apply/{id}', [LoansController::class, 'applyBodaBodaLoan'])->name('loan.bodaboda.apply');
+
+Route::get('/bodaboda/apply/loan/{id}', [LoansController::class, 'bodaLoanApply'])->name('boda.loan.apply.loan');
+Route::post('/bodaboda/process-payment/{id}', [LoansController::class, 'processBodaDeposit'])->name('boda.loan.processPayment');
+
+// Store loan application
+Route::post('/bodaboda/store', [LoansController::class, 'storeBodaBodaLoan'])->name('loan.bodaboda.store');
+
+Route::get('/education', [LoansController::class, 'education'])->name('loan.education');
+Route::get('/kilimo', [LoansController::class, 'kilimo'])->name('loan.kilimo');
+Route::get('/emergency', [LoansController::class, 'emergency'])->name('loan.emergency');
+Route::get('/business', [LoansController::class, 'business'])->name('loan.business');
+
+
     Route::get('/apply', [LoansController::class, 'showApplicationForm'])->name('loan.apply');
     Route::post('/apply', [LoansController::class, 'apply'])->name('loan.submit');
+    Route::get('/car/apply/{id}', [LoansController::class, 'carapply'])->name('car.loan.apply');
+    Route::get('/car/apply/loan/{id}', [LoansController::class, 'loancarapply'])->name('car.loan.apply.loan');
+    Route::post('/apply/{id}/pay', [LoansController::class, 'processPayment'])->name('loan.processPayment');
+    Route::post('/car/apply/loan/store', [LoansController::class, 'storeLoanApplication'])
+    ->name('car.loan.apply.loan.store');
+
     Route::post('/{loan}/payment', [LoansController::class, 'processPayment'])->name('loan.payment');
     Route::get('/offer/{loan}', [LoansController::class, 'showOffer'])->name('loan.offer');
     Route::get('/pay-fee/{loan}', [LoansController::class, 'payFee'])->name('loan.pay_fee');
@@ -56,10 +86,22 @@ Route::middleware(['auth'])->prefix('loans')->group(function() {
 });
 
 Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
+    // Route::get('bodabodas', [BodaBodaController::class, 'index'])->name('bodabodas.index');
+    // Route::get('bodabodas/create', [BodaBodaController::class, 'create'])->name('bodabodas.create');
+    // Route::post('bodabodas', [BodaBodaController::class, 'store'])->name('bodabodas.store');
+    // Route::get('bodabodas/{bodaboda}', [BodaBodaController::class, 'show'])->name('bodabodas.show');
+    // Route::get('bodabodas/{bodaboda}/edit', [BodaBodaController::class, 'edit'])->name('bodabodas.edit');
+    // Route::put('bodabodas/{bodaboda}', [BodaBodaController::class, 'update'])->name('bodabodas.update');
+    // Route::delete('bodabodas/{bodaboda}', [BodaBodaController::class, 'destroy'])->name('bodabodas.destroy');
+    Route::resource('vehicles', VehicleController::class);
+    // Route::resource('bodabodas', BodaBodaController::class);
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/loans', [LoanController::class, 'index'])->name('admin.loans.index');
     Route::get('/loans/{loan}', [LoanController::class, 'show'])->name('admin.loans.show');
     Route::post('/loans/{loan}/approve', [LoanController::class, 'approve'])->name('admin.loans.approve');
     Route::post('/loans/{loan}/reject', [LoanController::class, 'reject'])->name('admin.loans.reject');
     Route::post('/loans/{loan}/disburse', [LoanController::class, 'disburse'])->name('admin.loans.disburse');
+});
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->as('admin.')->group(function () {
+    Route::resource('bodabodas', BodaBodaController::class);
 });
