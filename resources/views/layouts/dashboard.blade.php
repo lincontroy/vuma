@@ -106,10 +106,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <footer class="main-footer">
             <!-- To the right -->
             <div class="float-right d-none d-sm-inline">
-                info@Corefundcredit.com
+                info@Vumafunds.com
             </div>
             <!-- Default to the left -->
-            <strong>Copyright &copy; <?= date('Y') ?> <a href="https://Corefundcredit.com">Corefundcredit</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; <?= date('Y') ?> <a href="https://Vumafunds.com">Vumafunds</a>.</strong> All rights reserved.
         </footer>
     </div>
     <!-- ./wrapper -->

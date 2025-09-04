@@ -188,7 +188,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="footer__copyright">
-                        <p class="copyright text-center">Copyright © <span id="copyYear"></span> <a href="#" class="secondary_color">{{env('APP_NAME')}}</a>. Designed By <a href="#" class="secondary_color">Corefundcredit</a></p>
+                        <p class="copyright text-center">Copyright © <span id="copyYear"></span> <a href="#" class="secondary_color">{{env('APP_NAME')}}</a>. Designed By <a href="#" class="secondary_color">Vumafunds</a></p>
                     </div>
                 </div>
             </div>
